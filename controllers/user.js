@@ -89,3 +89,37 @@ exports.delete = async function (request, response, next) {
         });
     }
 }
+
+// Insert CSV data in DataBase
+exports.csvToDatabase = async function (request, response, next) {
+    // TODO: Validation of parameters ...
+    try {
+        await userService.csvToDatabase(request.params.fileName);
+        return response.status(200).json({
+          status: 200,
+          message: "Succesfully Users Inserted"
+        });
+    } catch (error) {
+        return response.status(400).json({
+          status: 400,
+          message: error.message
+        });
+    }
+}
+
+// Insert JSON data from body into csv file
+exports.jsonToCsv = async function (request, response, next) {
+    // TODO: Validation of parameters ...
+    try {
+        await userService.jsonToCsv(request.body, request.params.fileName);
+        return response.status(200).json({
+          status: 200,
+          message: "Succesfully Users Inserted In CSV FILE : " + request.params.fileName
+        });
+    } catch (error) {
+        return response.status(400).json({
+          status: 400,
+          message: error.message
+        });
+    }
+}

@@ -8,7 +8,7 @@ let User = new schema({
       required: true,
       max: 100
     },
-    adress: {
+    address: {
       type: String,
       required: true,
       max: 200

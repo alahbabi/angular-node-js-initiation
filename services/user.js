@@ -1,4 +1,7 @@
 const userModel = require('../models/user');
+const csvToJson = require('csvtojson');
+const jsonToCsv = require('json2csv').parse;
+const fileSystem = require("fs");
 
 // Find all Users
 exports.findAll = async function (){
@@ -53,5 +56,31 @@ exports.delete = async function(id){
     return deletedUser;
   } catch (error) {
       throw Error('Error while Deleting User : ' + error.message);
+  }
+};
+
+//Inserting All Users In DataBase From Csv File
+exports.csvToDatabase = async function(fileName) {
+  try {
+    csvToJson().fromFile("./files/csv/"+fileName).then(source => {
+      source.forEach(function(line) {
+        var user = new userModel(line);
+        user.save();
+      });
+    })
+  } catch (e) {
+      throw Error('Error while reading file : ' + error.message);
+  }
+};
+
+// Insert All Users From Json Body To csv
+exports.jsonToCsv = async function(body, fileName) {
+  try {
+    const csv = jsonToCsv(body, {
+      fields : ["name", "address"]
+    });
+    fileSystem.writeFileSync("./files/csv/"+fileName, csv);
+  } catch (e) {
+      throw Error('Error while reading file : ' + error.message);
   }
 };
