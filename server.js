@@ -15,4 +15,4 @@ app.use("/" , user);
 // Starting application
 app.listen(3003 , () => {
   console.log("Listening at : 3003");
-})
+});
