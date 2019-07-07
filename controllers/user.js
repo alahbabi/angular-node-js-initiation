@@ -1,4 +1,4 @@
-const userService = require('../services/user')
+const userService = require('../services/user');
 
 // Insert user
 exports.addUser = async function (request, response, next) {
@@ -16,7 +16,7 @@ exports.addUser = async function (request, response, next) {
           message: error.message
         });
     }
-}
+};
 
 // Find all Users
 exports.findAll = async function (request, response, next) {
@@ -34,7 +34,7 @@ exports.findAll = async function (request, response, next) {
           message: error.message
         });
     }
-}
+};
 
 // Find user by id
 exports.findById = async function (request, response, next) {
@@ -52,7 +52,7 @@ exports.findById = async function (request, response, next) {
           message: error.message
         });
     }
-}
+};
 
 // Modify user using his Id
 exports.update = async function (request, response, next) {
@@ -88,7 +88,7 @@ exports.delete = async function (request, response, next) {
           message: error.message
         });
     }
-}
+};
 
 // Insert CSV data in DataBase
 exports.csvToDatabase = async function (request, response, next) {
@@ -105,7 +105,7 @@ exports.csvToDatabase = async function (request, response, next) {
           message: error.message
         });
     }
-}
+};
 
 // Insert JSON data from body into csv file
 exports.jsonToCsv = async function (request, response, next) {
@@ -122,4 +122,4 @@ exports.jsonToCsv = async function (request, response, next) {
           message: error.message
         });
     }
-}
+};
