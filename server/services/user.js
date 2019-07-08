@@ -77,7 +77,7 @@ exports.csvToDatabase = async function(fileName) {
 exports.jsonToCsv = async function(body, fileName) {
   try {
     const csv = jsonToCsv(body, {
-      fields : ["name", "address"]
+      fields : ["firstname", "lastname", "login", "password", "email"]
     });
     fileSystem.writeFileSync("./files/csv/"+fileName, csv);
   } catch (e) {

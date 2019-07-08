@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-//User model
-let User = new schema({
+//Task model
+let Task = new schema({
     name: {
       type: String,
       required: true,
       max: 100
     },
-    address: {
+    language: {
       type: String,
       required: true,
-      max: 200
+      max: 100
+    },
+    seller: {
+      type : schema.Types.ObjectId,
+      ref : 'user'
     }
 });
 
-module.exports = mongoose.model('user', User);
+module.exports = mongoose.model('task', Task);
