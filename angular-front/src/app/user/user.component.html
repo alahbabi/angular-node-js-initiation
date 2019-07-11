@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row">
+          <div class="col s5">
+            <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUser._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="firstname" #firstname="ngModel" [(ngModel)]="userService.selectedUser.firstname" placeholder="Enter your firstname" required>
+                  <label>
+                    Firstname : <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="lastname" #lastname="ngModel" [(ngModel)]="userService.selectedUser.lastname" placeholder="Enter your lastname">
+                  <label>
+                    Lastname : <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="login" #login="ngModel" [(ngModel)]="userService.selectedUser.login" placeholder="Enter your login">
+                  <label>
+                    Login : <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" placeholder="Enter your password">
+                  <label>
+                    Password : <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="email" #email="ngModel" [(ngModel)]="userService.selectedUser.email" placeholder="Enter your email">
+                  <label>
+                    Email : <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn btn-custom right" type="button" name="button" (click)="resetForm(userForm)">Reset</button>
+                  <button class="btn btn-custom right" type="submit" name="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="col s7">
+              <table classe ="responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th>Firstname</th>
+                      <th>Lastname</th>
+                      <th>Email</th>
+                    </tr>
+                    <tr *ngFor="let usr of userService.users?.data">
+                      <td>{{usr.firstname}}</td>
+                      <td>{{usr.lastname}}</td>
+                      <td>{{usr.email}}</td>
+                    </tr>
+                  </thead>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
