@@ -38,6 +38,7 @@ export class UserComponent implements OnInit {
     this.userService.postUser(userForm.value).subscribe((response) => {
       this.resetForm(userForm);
       M.toast({html : 'Saved successfully', classes :'rounded'});
+      this.refreshUsersList();
     });
   }
 
