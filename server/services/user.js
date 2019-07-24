@@ -2,6 +2,7 @@ const userModel = require('../models/user');
 const csvToJson = require('csvtojson');
 const jsonToCsv = require('json2csv').parse;
 const fileSystem = require("fs");
+const bcrypt = require("bcryptjs");
 
 // Find all Users
 exports.findAll = async function (){
@@ -16,6 +17,11 @@ exports.findAll = async function (){
 // Insert user
 exports.addUser = async function(body){
   try {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(body.password, salt);
+    console.log(salt);
+    console.log(hashedPassword);
+    body.password = hashedPassword;
     var user = new userModel(body);
     var result = await user.save();
     return result;
